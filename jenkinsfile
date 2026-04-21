@@ -70,7 +70,7 @@ pipeline {
             echo "✅ Pipeline Finished Successfully!"
         }
         failure {
-            echo "❌ Pipeline Failed. Check the logs!"
+            echo " Pipeline Failed. Check the logs!"
         }
     }
 }
