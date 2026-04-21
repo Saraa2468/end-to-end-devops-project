@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: art-store-app
+  labels:
+    app: art-store
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: art-store
+  template:
+    metadata:
+      labels:
+        app: art-store
+    spec:
+      containers:
+      - name: art-store-app
+        image: sarasalah24/art-store-app:latest
+        ports:
+        - containerPort: 80 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: art-store-service
+spec:
+  selector:
+    app: art-store
+  ports:
+    - protocol: TCP
+      port: 80          # البورت اللي الخدمة بتسمع عليه
+      targetPort: 80    # البورت اللي هتبعت عليه جوه الـ Pod
+      nodePort: 30007   # البورت اللي هتفتحي بيه الموقع من المتصفح (IP:30007)
+  type: NodePort # بيسمح بدخول الزيارات من بره السيرفر
