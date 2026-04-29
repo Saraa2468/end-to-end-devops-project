@@ -3,23 +3,11 @@ This project demonstrates a production-grade DevSecOps pipeline for a Digital Ar
 
 🏗️ Architecture Overview
 Below is the system architecture showing the flow from code commit to production monitoring.
-graph LR
-    classDef source fill:#fff,stroke:#333,stroke-width:2px;
-    classDef ci fill:#d4e1f5,stroke:#2b579a,stroke-width:2px;
-    classDef k8s fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
-    classDef monitor fill:#fff3e0,stroke:#ef6c00,stroke-width:2px;
 
-    A[GitHub]:::source ==> B{Jenkins}:::ci
-    B --> C[Docker Build]:::ci
-    C --> D[Trivy Scan]:::ci
-    D --> E[Docker Push]:::ci
-    E ==> F((Docker Hub))
-    F ==> G[AWS EC2 / K3s]:::k8s
-    G --> H[Art Store App]:::k8s
-    J[Prometheus]:::monitor --> K[Grafana]:::monitor
-    J -.-> G
+<img width="3863" height="841" alt="mermaid-diagram-2026-04-23-163011" src="https://github.com/user-attachments/assets/17ba3a47-9aad-4b99-84a0-6553777dc55f" />
 
-    🚀 Key Features & Optimization
+
+🚀 Key Features & Optimization
 . Continuous Integration (CI): Fully automated pipeline using Jenkins for building and pushing Docker images.
 
 . Security (Shift-Left): Integrated Trivy vulnerability scanning. The pipeline fails automatically if high-severity vulnerabilities are detected.
